@@ -1,6 +1,7 @@
 import os
 from flask import Flask, jsonify
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
 from models import db
 from routes.auth import auth_bp
 from routes.tables import tables_bp
@@ -27,6 +28,7 @@ app.config['JWT_SECRET_KEY'] = os.environ.get(
     'JWT_SECRET_KEY',
     'cafe_super_secret_key'
 )
+jwt = JWTManager(app)
 
 db.init_app(app)
 
