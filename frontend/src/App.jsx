@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Tables from './pages/Tables';
 import Menu from './pages/Menu';
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/tables" element={<PrivateRoute><Tables /></PrivateRoute>} />
         <Route path="/menu" element={<PrivateRoute><Menu /></PrivateRoute>} />
