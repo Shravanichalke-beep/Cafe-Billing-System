@@ -15,17 +15,40 @@ class Table(db.Model):
     status = db.Column(db.String(20), nullable=False, default='Available') # Available, Occupied, Bill Pending
 
 class MenuItem(db.Model):
+    __tablename__ = 'menu_items'
+
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    category = db.Column(db.String(50), nullable=False)
 
-    # NEW: Half / Full quantity type
-    quantity = db.Column(db.String(20), nullable=False, default='Full')
+    name = db.Column(
+        db.String(100),
+        nullable=False
+    )
 
-    price = db.Column(db.Float, nullable=False)
-    is_available = db.Column(db.Boolean, default=True)
-    image_url = db.Column(db.String(255), nullable=True)
+    category = db.Column(
+        db.String(50),
+        nullable=False
+    )
 
+    quantity = db.Column(
+        db.Integer,
+        nullable=False,
+        default=0
+    )
+
+    price = db.Column(
+        db.Float,
+        nullable=False
+    )
+
+    is_available = db.Column(
+        db.Boolean,
+        default=True
+    )
+
+    image_url = db.Column(
+        db.String(255),
+        nullable=True
+    )
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     table_id = db.Column(db.Integer, db.ForeignKey('table.id'), nullable=False)

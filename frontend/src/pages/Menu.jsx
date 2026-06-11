@@ -21,7 +21,7 @@ const Menu = () => {
 
   const categories = [
     'All',
-    'Stater',
+    'Starter',
     'Soup',
     'Cold Beverages',
     'Rice',

@@ -29,12 +29,12 @@ def add_menu_item():
     data = request.get_json()
 
     new_item = MenuItem(
-        name=data['name'],
-        category=data['category'],
-        quantity=data['quantity'],  # NEW
-        price=data['price'],
-        is_available=data.get('is_available', True),
-        image_url=data.get('image_url', '')
+        name = data['name'],
+        category = data['category'],
+        quantity = data['quantity'],  # NEW
+        price = data['price'],
+        is_available = data.get('is_available', True),
+        image_url = data.get('image_url', '')
     )
 
     db.session.add(new_item)
