@@ -23,9 +23,16 @@ app.config['SQLALCHEMY_DATABASE_URI'] = database_url or ('sqlite:///' + os.path.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # JWT config
-app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'cafe_super_secret_key')
+app.config['JWT_SECRET_KEY'] = os.environ.get(
+    'JWT_SECRET_KEY',
+    'cafe_super_secret_key'
+)
 
 db.init_app(app)
+
+# Create database tables (works on Render and locally)
+with app.app_context():
+    db.create_all()
 
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -39,6 +46,4 @@ def index():
     return jsonify({"message": "Welcome to Cafe Billing API"})
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True, port=5000)
