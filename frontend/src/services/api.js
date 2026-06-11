@@ -33,4 +33,13 @@ export const getBills = () => api.get('/bills/');
 export const generateBill = (orderId) => api.post('/bills/generate', { order_id: orderId });
 export const getDailyReport = () => api.get('/bills/reports/daily');
 
+// Update bill
+export const updateBill = (id, data) => {
+  return api.put(`/bills/${id}`, data);
+};
+
+// Delete bill
+export const deleteBill = (id) => {
+  return api.delete(`/bills/${id}`);
+};
 export default api;

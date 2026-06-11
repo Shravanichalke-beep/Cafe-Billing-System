@@ -86,3 +86,33 @@ def get_daily_report():
         "total_sales": total_sales,
         "total_bills": total_bills
     })
+# Edit bill
+@bills_bp.route('/<int:id>', methods=['PUT'])
+def update_bill(id):
+    bill = Bill.query.get_or_404(id)
+    data = request.get_json()
+
+    # Update grand total if provided
+    if 'grand_total' in data:
+        bill.grand_total = data['grand_total']
+
+        # Recalculate subtotal and tax
+        bill.subtotal = bill.grand_total / 1.05
+        bill.tax_amount = bill.grand_total - bill.subtotal
+
+    db.session.commit()
+
+    return jsonify({
+        "msg": "Bill updated successfully"
+    })
+    # Delete bill
+@bills_bp.route('/<int:id>', methods=['DELETE'])
+def delete_bill(id):
+    bill = Bill.query.get_or_404(id)
+
+    db.session.delete(bill)
+    db.session.commit()
+
+    return jsonify({
+        "msg": "Bill deleted successfully"
+    })
