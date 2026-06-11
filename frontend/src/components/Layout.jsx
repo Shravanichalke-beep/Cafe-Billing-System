@@ -54,15 +54,15 @@ const Layout = ({ children }) => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
         <header className="bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm z-10 md:hidden">
-            <button onClick={() => setSidebarOpen(true)} className="text-gray-600"><FiMenu size={24} /></button>
-            <h1 className="text-xl font-bold text-dark">Cafe Delight</h1>
-            <div className="w-6"></div> {/* Spacer */}
+          <button onClick={() => setSidebarOpen(true)} className="text-gray-600"><FiMenu size={24} /></button>
+          <h1 className="text-xl font-bold text-dark">Kalakarz Town</h1>
+          <div className="w-6"></div> {/* Spacer */}
         </header>
         <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 relative">
-            {children}
+          {children}
         </main>
       </div>
-      
+
       {/* Overlay for mobile sidebar */}
       {sidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-10 md:hidden" onClick={() => setSidebarOpen(false)}></div>}
     </div>
